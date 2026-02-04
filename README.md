@@ -66,10 +66,10 @@ _Tips:_
 
 ### Arguments
 
-| option          | default    | description                                                                                        |
-|:----------------|:-----------|:---------------------------------------------------------------------------------------------------|
-| width           | 100%       | Width of the final image in the quarto document                                                    |
-| format          | jpg        | The image format to render. Choose: jpg/png/svg                                                    |
+| option     | default    | description                                     |
+|:-----------|:-----------|:------------------------------------------------|
+| width      | 100%       | Width of the final image in the quarto document |
+| format     | jpg        | The image format to render. Choose: jpg/png     |
 
 ## Example
 

@@ -20,7 +20,7 @@ Embed-sheet is a Quarto extension that enables embedding spreadsheet content (Li
 ### Architecture Patterns
 - **Shortcode pattern**: Extension exposes a single shortcode `{{< embed-sheet >}}`
 - **External tool delegation**: Heavy lifting (rendering) is delegated to LibreOffice headless
-- **Supported formats**: Input: `xls`, `xlsx`, `ods` | Output: `jpg`, `png`, `svg`
+- **Supported formats**: Input: `xls`, `xlsx`, `ods` | Output: `jpg`, `png`
 
 ### Testing Strategy
 - Use `quarto preview` for iterative development and testing

@@ -2,6 +2,16 @@
 title: "Embed-sheet Example"
 ---
 
-## Biorhythm Calculator
+## Biorhythm Calculator, width = 100%
 
 {{< embedSheet Biorhythm-Calculator.ods >}}
+
+## Biorhythm Calculator, width = 50%
+
+{{< embedSheet Biorhythm-Calculator.ods width=50% >}}
+
+## Biorhythm Calculator, all file types = 100%
+
+{{< embedSheet Biorhythm-Calculator.ods format=jpg width=50% >}}
+
+{{< embedSheet Biorhythm-Calculator.ods format=png width=50% >}}
