@@ -1,8 +1,16 @@
-# Embed-sheet Extension For Quarto
+# Embed-sheet - extension For Quarto
 
-Embed Sheet allowed embedding SpreadSheet content as rendered image into PDF or
-HTML documents. You can embed LibreOffice or Excel documents of which the first
-page of a sheet is rendered as image and embedded in the Quarto document.
+_A Quarto extension that embeds spreadsheet files as images in your documents._
+
+You can embed LibreOffice or Excel documents of which the first page of a sheet
+is rendered as image and embedded in the Quarto document.
+
+## Features
+
+- Converts Excel (.xls, .xlsx) and LibreOffice Calc (.ods) files to images
+- Uses LibreOffice headless for high-fidelity rendering
+- Supports custom width and output format (jpg, png)
+- Caches converted images to speed up subsequent renders
 
 ## Motivation
 
@@ -28,10 +36,26 @@ If you're using version control, you will want to check in this directory.
 
 ## Requirements
 
-- LibreOffice for headless rendering spreadsheet documents to images.
-- Supported file types: `xls`, `xlsx`, `ods`
+- Quarto (https://quarto.org/) 1.3+
+- LibreOffice (https://www.libreoffice.org/) (for headless conversion)
 
-## Using
+## Usage
+
+### Shortcode
+
+```
+{{< embed-sheet my-spreadsheet.ods >}}
+{{< embed-sheet data.xlsx width=50% >}}
+{{< embed-sheet report.ods format=png >}}
+
+```
+
+### Shortcode arguments
+
+| option     | default    | description                                     |
+|:-----------|:-----------|:------------------------------------------------|
+| width      | 100%       | Width of the final image in the quarto document |
+| format     | jpg        | The image format to render. Choose: jpg/png     |
 
 ### Preparing the spreadsheet document
 
@@ -53,23 +77,6 @@ _Tips:_
 - Don't forget to save your documents after changing above settings
 - Set the view to Page Breaks
 - Use the Print Preview functionality to check the output of your document.
-
-### Shortcode
-
-```
-{{< embed-sheet my-libreoffice-calc.ods  >}}
-
-{{< embed-sheet my-excel.xlsx >}}
-
-{{< embed-sheet my-excel.xlsx width=50% >}}
-```
-
-### Arguments
-
-| option     | default    | description                                     |
-|:-----------|:-----------|:------------------------------------------------|
-| width      | 100%       | Width of the final image in the quarto document |
-| format     | jpg        | The image format to render. Choose: jpg/png     |
 
 ## Example
 
