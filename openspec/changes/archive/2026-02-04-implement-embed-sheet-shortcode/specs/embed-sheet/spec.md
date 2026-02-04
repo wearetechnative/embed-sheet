@@ -4,12 +4,12 @@
 The shortcode SHALL convert spreadsheet files to images using LibreOffice headless rendering.
 
 #### Scenario: Successful conversion of ODS file
-- **WHEN** user includes `{{< embed-sheet my-file.ods >}}` in their Quarto document
+- **WHEN** user includes `{{< embedSheet my-file.ods >}}` in their Quarto document
 - **THEN** the system SHALL execute `libreoffice --headless --convert-to jpg --outdir <dir> <file>`
 - **AND** the resulting image SHALL be embedded in the document output
 
 #### Scenario: Successful conversion with custom format
-- **WHEN** user includes `{{< embed-sheet my-file.xlsx format=png >}}`
+- **WHEN** user includes `{{< embedSheet my-file.xlsx format=png >}}`
 - **THEN** the system SHALL convert to PNG format instead of the default JPG
 
 ### Requirement: Supported Input Formats
@@ -35,7 +35,7 @@ The shortcode SHALL support a `width` parameter to control the display width of 
 - **THEN** the image SHALL be displayed at 100% width
 
 #### Scenario: Custom width
-- **WHEN** user includes `{{< embed-sheet file.ods width=50% >}}`
+- **WHEN** user includes `{{< embedSheet file.ods width=50% >}}`
 - **THEN** the image SHALL be displayed at 50% width
 
 ### Requirement: Format Parameter

@@ -44,9 +44,9 @@ If you're using version control, you will want to check in this directory.
 ### Shortcode
 
 ```
-{{< embed-sheet my-spreadsheet.ods >}}
-{{< embed-sheet data.xlsx width=50% >}}
-{{< embed-sheet report.ods format=png >}}
+{{< embedSheet my-spreadsheet.ods >}}
+{{< embedSheet data.xlsx width=50% >}}
+{{< embedSheet report.ods format=png >}}
 
 ```
 
