@@ -4,4 +4,4 @@ title: "Embed-sheet Example"
 
 ## Biorhythm Calculator
 
-{{< embed-sheet Biorhythm-Calculator.ods >}}
+{{< embedSheet Biorhythm-Calculator.ods >}}
