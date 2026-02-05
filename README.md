@@ -38,6 +38,7 @@ If you're using version control, you will want to check in this directory.
 
 - Quarto (https://quarto.org/) 1.3+
 - LibreOffice (https://www.libreoffice.org/) (for headless conversion)
+- ImageMagick (https://imagemagick.org) if using `auto_trim_exterior_white`
 
 ## Usage
 
