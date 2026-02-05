@@ -60,6 +60,13 @@ return {
       if f ~= "" then format = f end
     end
 
+    local auto_trim_raw = kwargs["auto_trim_exterior_white"]
+    local auto_trim = false  -- default
+    if auto_trim_raw then
+      local t = pandoc.utils.stringify(auto_trim_raw)
+      auto_trim = (t == "true" or t == "1" or t == "yes")
+    end
+
     -- 1.2 Validate input file exists and has supported extension
     local ext = get_extension(file_path)
     if not SUPPORTED_EXTENSIONS[ext] then
@@ -75,7 +82,9 @@ return {
     -- 1.3 Determine output path for converted image
     local dir = get_dir(file_path)
     local basename = get_basename(file_path)
-    local output_filename = CACHE_PREFIX .. basename .. "." .. format
+    -- Include trim suffix in cache filename to differentiate trimmed vs non-trimmed
+    local trim_suffix = auto_trim and "_trimmed" or ""
+    local output_filename = CACHE_PREFIX .. basename .. trim_suffix .. "." .. format
     local output_path = dir .. "/" .. output_filename
 
     -- 1.4 Execute LibreOffice headless conversion command (only if not cached)
@@ -94,15 +103,40 @@ return {
           "[embed-sheet error: LibreOffice conversion failed for '%s']", file_path)))
       end
       
-      -- Rename to cache filename
+      -- Rename to cache filename (without trim suffix first)
+      local untrimmed_path = dir .. "/" .. CACHE_PREFIX .. basename .. "." .. format
       if file_exists(temp_output) then
-        os.rename(temp_output, output_path)
+        os.rename(temp_output, untrimmed_path)
       end
       
       -- Verify output was created
-      if not file_exists(output_path) then
+      if not file_exists(untrimmed_path) then
         return pandoc.Strong(pandoc.Str(string.format(
-          "[embed-sheet error: conversion did not produce expected output '%s']", output_path)))
+          "[embed-sheet error: conversion did not produce expected output '%s']", untrimmed_path)))
+      end
+
+      -- Apply ImageMagick trim if requested
+      if auto_trim then
+        local trim_cmd = string.format(
+          'convert "%s" -trim +repage "%s"',
+          untrimmed_path, output_path)
+        
+        local trim_result = os.execute(trim_cmd)
+        
+        if trim_result ~= 0 and trim_result ~= true then
+          return pandoc.Strong(pandoc.Str(
+            "[embed-sheet error: ImageMagick is required for auto_trim_exterior_white. " ..
+            "Please install ImageMagick (e.g., 'apt install imagemagick' or 'brew install imagemagick')]"))
+        end
+        
+        -- Verify trimmed output was created
+        if not file_exists(output_path) then
+          return pandoc.Strong(pandoc.Str(string.format(
+            "[embed-sheet error: ImageMagick trim did not produce expected output '%s']", output_path)))
+        end
+      else
+        -- No trim requested, output_path is same as untrimmed_path
+        output_path = untrimmed_path
       end
     end
 
