@@ -47,15 +47,17 @@ If you're using version control, you will want to check in this directory.
 {{< embedSheet my-spreadsheet.ods >}}
 {{< embedSheet data.xlsx width=50% >}}
 {{< embedSheet report.ods format=png >}}
+{{< embedSheet report.ods format=png auto_trim_exterior_white=true>}}
 
 ```
 
 ### Shortcode arguments
 
-| option     | default    | description                                     |
-|:-----------|:-----------|:------------------------------------------------|
-| width      | 100%       | Width of the final image in the quarto document |
-| format     | jpg        | The image format to render. Choose: jpg/png     |
+| option                   | default    | description                                     |
+|:-------------------------|:-----------|:------------------------------------------------|
+| width                    | 100%       | Width of the final image in the quarto document |
+| format                   | jpg        | The image format to render. Choose: jpg/png     |
+| auto_trim_exterior_white | false      | Use `convert` to auto trim exterior white space |
 
 ### Preparing the spreadsheet document
 
@@ -66,11 +68,11 @@ Currently only rendering of the first sheet is supported.
 1. Set Print Ranges to the area you want to render.
 2. In Page Format:
     - choose landscape or portrait
-    - update with and height
-    - set margins to 0 (this will set margins to the lowest amount)
     - disable header
     - disable footer
     - disable page numbers
+    - update with and height (if not using `auto_trim_exterior_white`)
+    - set margins to 0 (if not using `auto_trim_exterior_white`)
 
 _Tips:_
 
