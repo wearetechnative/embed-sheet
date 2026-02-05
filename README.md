@@ -47,7 +47,7 @@ If you're using version control, you will want to check in this directory.
 {{< embedSheet my-spreadsheet.ods >}}
 {{< embedSheet data.xlsx width=50% >}}
 {{< embedSheet report.ods format=png >}}
-{{< embedSheet report.ods format=png auto_trim_exterior_white=true>}}
+{{< embedSheet report.ods format=png auto_trim_exterior_white=true >}}
 
 ```
 
